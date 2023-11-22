@@ -1,0 +1,66 @@
+<!-- DEVELOPER: Nicolas Marin, IS117-003, Fall 2023 -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Best European Football Clubs</title>
+</head>
+<body>
+    <header>
+        <div class="dropdown-menu">
+            <h3>
+                <a class="dropdown-item" href="#">Home Page</a>
+                <a class="dropdown-item" href="#">Team 1</a>
+                <a class="dropdown-item" href="#">Team 3</a>
+                <a class="dropdown-item" href="#">Contact Us</a>
+            </h3>
+        </div>
+    </header>
+
+    <footer>
+        <p>&copy; Nicolas Marin November 21, 2023</p>
+    </footer>
+
+    <script>
+        function setCookie(name1, value1, days) {
+            const d = new Date();
+            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+            let expire = "expire="+d.toUTCString();
+            document.cookie = name1 + "=" + value1 + ";" + expire + ";path=/";
+        }
+
+        function getCookie(name1) {
+            let name = name1 + "=";
+            let a = document.cookie.split(';');
+            for(let i = 0; i < a.length; i++) {
+                let b = a[i];
+                while (b.charAt(0) == ' ') {
+                    b = b.substring(1);
+                }
+                if (b.indexOf(name) == 0) {
+                    return b.substring(name.length, b.length);
+                }
+            }
+            return "";
+        }
+
+        function checkCookie() {
+            let user = getCookie("username");
+            if (user != "") {
+                alert("Welcome back " + user);
+            } else {
+                user = prompt("Please enter name:", "");
+                if (user != "" && user != null) {
+                    setCookie("username", user, 365);
+                }
+            }
+        }
+
+        window.onload = function() {
+            checkCookie();
+        };
+    </script>
+</body>
+</html>
